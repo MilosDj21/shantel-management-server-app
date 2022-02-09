@@ -1,12 +1,16 @@
-package com.example.models;
+package com.example.main.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "korisnici")
 public class UserModel {
     @GeneratedValue
-    private long id;
+    @Id
+    private int id;
     private String status;
     private String ime;
     private String prezime;
@@ -17,7 +21,7 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(long id, String status, String ime, String prezime, String username, String password, String ui_tema) {
+    public UserModel(int id, String status, String ime, String prezime, String username, String password, String ui_tema) {
         this.id = id;
         this.status = status;
         this.ime = ime;
@@ -31,7 +35,7 @@ public class UserModel {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
