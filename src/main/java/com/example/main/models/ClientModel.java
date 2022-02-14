@@ -1,39 +1,37 @@
 package com.example.main.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "klijenti")
 public class ClientModel {
     @Id
     @GeneratedValue
     private int id;
-    private String domen;
     private String kontakt_osoba;
     private String email;
-    private String status;
     private String napomena;
     private Timestamp vreme_izmene;
-    private int izmena_manager_id;
-    private int zahtev_id;
+
+    /*@OneToMany(mappedBy = "klijent")
+    private List<LinkModel> linkovi = new ArrayList<>();
+    */
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "korisnik_id", referencedColumnName = "id")
+    private UserModel korisnik;
 
     public ClientModel() {
     }
 
-    public ClientModel(int id, String domen, String kontakt_osoba, String email, String status, String napomena, Timestamp vreme_izmene, int izmena_manager_id, int zahtev_id) {
+    public ClientModel(int id, String kontakt_osoba, String email, String napomena, Timestamp vreme_izmene) {
         this.id = id;
-        this.domen = domen;
         this.kontakt_osoba = kontakt_osoba;
         this.email = email;
-        this.status = status;
         this.napomena = napomena;
         this.vreme_izmene = vreme_izmene;
-        this.izmena_manager_id = izmena_manager_id;
-        this.zahtev_id = zahtev_id;
     }
 
     public int getId() {
@@ -42,14 +40,6 @@ public class ClientModel {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDomen() {
-        return domen;
-    }
-
-    public void setDomen(String domen) {
-        this.domen = domen;
     }
 
     public String getKontakt_osoba() {
@@ -68,14 +58,6 @@ public class ClientModel {
         this.email = email;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getNapomena() {
         return napomena;
     }
@@ -92,19 +74,19 @@ public class ClientModel {
         this.vreme_izmene = vreme_izmene;
     }
 
-    public int getIzmena_manager_id() {
-        return izmena_manager_id;
+    /*public List<LinkModel> getLinkovi() {
+        return linkovi;
     }
 
-    public void setIzmena_manager_id(int izmena_manager_id) {
-        this.izmena_manager_id = izmena_manager_id;
+    public void setLinkovi(List<LinkModel> linkovi) {
+        this.linkovi = linkovi;
+    }*/
+
+    public UserModel getKorisnik() {
+        return korisnik;
     }
 
-    public int getZahtev_id() {
-        return zahtev_id;
-    }
-
-    public void setZahtev_id(int zahtev_id) {
-        this.zahtev_id = zahtev_id;
+    public void setKorisnik(UserModel korisnik) {
+        this.korisnik = korisnik;
     }
 }

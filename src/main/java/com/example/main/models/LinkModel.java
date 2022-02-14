@@ -1,31 +1,35 @@
 package com.example.main.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "links")
+@Table(name = "linkovi")
 public class LinkModel {
 
     @Id
     @GeneratedValue
     private int id;
     private String url;
-    private String odgovor_teme;
-    private int klijent_id;
-    private int zahtev_id;
+    @Column(name = "nas_url")
+    private String nasUrl;
+    private double cena;
+    @Column(name = "vreme_placanja")
+    private Timestamp vremePlacanja;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "klijent_id", referencedColumnName = "id")
+    private ClientModel klijent;
 
     public LinkModel() {
     }
 
-    public LinkModel(int id, String url, String odgovor_teme, int klijent_id, int zahtev_id) {
+    public LinkModel(int id, String url, String nasUrl, double cena, Timestamp vremePlacanja) {
         this.id = id;
         this.url = url;
-        this.odgovor_teme = odgovor_teme;
-        this.klijent_id = klijent_id;
-        this.zahtev_id = zahtev_id;
+        this.nasUrl = nasUrl;
+        this.cena = cena;
+        this.vremePlacanja = vremePlacanja;
     }
 
     public int getId() {
@@ -44,27 +48,35 @@ public class LinkModel {
         this.url = url;
     }
 
-    public String getOdgovor_teme() {
-        return odgovor_teme;
+    public String getNasUrl() {
+        return nasUrl;
     }
 
-    public void setOdgovor_teme(String odgovor_teme) {
-        this.odgovor_teme = odgovor_teme;
+    public void setNasUrl(String nasUrl) {
+        this.nasUrl = nasUrl;
     }
 
-    public int getKlijent_id() {
-        return klijent_id;
+    public double getCena() {
+        return cena;
     }
 
-    public void setKlijent_id(int klijent_id) {
-        this.klijent_id = klijent_id;
+    public void setCena(double cena) {
+        this.cena = cena;
     }
 
-    public int getZahtev_id() {
-        return zahtev_id;
+    public Timestamp getVremePlacanja() {
+        return vremePlacanja;
     }
 
-    public void setZahtev_id(int zahtev_id) {
-        this.zahtev_id = zahtev_id;
+    public void setVremePlacanja(Timestamp vremePlacanja) {
+        this.vremePlacanja = vremePlacanja;
+    }
+
+    public ClientModel getKlijent() {
+        return klijent;
+    }
+
+    public void setKlijent(ClientModel klijent) {
+        this.klijent = klijent;
     }
 }

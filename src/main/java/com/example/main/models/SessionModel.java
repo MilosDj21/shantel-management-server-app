@@ -1,27 +1,34 @@
 package com.example.main.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Random;
 
 @Entity
+@Table(name = "sesije")
 public class SessionModel {
     @Id
     @GeneratedValue
     private int id;
-    private UserModel userModel;
     private String token;
-    private Timestamp sessionCreate;
-    private Timestamp sessionEnd;
+    @Column(name = "vreme_kreiranja")
+    private Timestamp vremeKreiranja;
+    @Column(name = "vreme_zavrsetka")
+    private Timestamp vremeZavrsetka;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "korisnik_id")
+    private UserModel korisnik;
 
     public SessionModel() {
     }
 
-    public SessionModel(int id, UserModel userModel, Timestamp sessionCreate, Timestamp sessionEnd) {
-        this.id = id;
-        this.userModel = userModel;
+    /**
+     * Za kreiranje nove sesije
+     * @param korisnik
+     */
+    public SessionModel(UserModel korisnik) {
+        this.korisnik = korisnik;
         Random r = new Random();
         String token = "";
         for(int i=0;i<7;i++){
@@ -29,8 +36,15 @@ public class SessionModel {
             token += String.valueOf((char)(r.nextInt(26) + 'a'));
         }
         this.token = token;
-        this.sessionCreate = sessionCreate;
-        this.sessionEnd = sessionEnd;
+        this.vremeKreiranja = new Timestamp(System.currentTimeMillis());
+        this.vremeZavrsetka = null;
+    }
+
+    public SessionModel(int id, String token, Timestamp vremeKreiranja, Timestamp vremeZavrsetka) {
+        this.id = id;
+        this.token = token;
+        this.vremeKreiranja = vremeKreiranja;
+        this.vremeZavrsetka = vremeZavrsetka;
     }
 
     public int getId() {
@@ -41,12 +55,12 @@ public class SessionModel {
         this.id = id;
     }
 
-    public UserModel getUserModel() {
-        return userModel;
+    public UserModel getKorisnik() {
+        return korisnik;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setKorisnik(UserModel korisnik) {
+        this.korisnik = korisnik;
     }
 
     public String getToken() {
@@ -57,19 +71,19 @@ public class SessionModel {
         this.token = token;
     }
 
-    public Timestamp getSessionCreate() {
-        return sessionCreate;
+    public Timestamp getVremeKreiranja() {
+        return vremeKreiranja;
     }
 
-    public void setSessionCreate(Timestamp sessionCreate) {
-        this.sessionCreate = sessionCreate;
+    public void setVremeKreiranja(Timestamp vremeKreiranja) {
+        this.vremeKreiranja = vremeKreiranja;
     }
 
-    public Timestamp getSessionEnd() {
-        return sessionEnd;
+    public Timestamp getVremeZavrsetka() {
+        return vremeZavrsetka;
     }
 
-    public void setSessionEnd(Timestamp sessionEnd) {
-        this.sessionEnd = sessionEnd;
+    public void setVremeZavrsetka(Timestamp vremeZavrsetka) {
+        this.vremeZavrsetka = vremeZavrsetka;
     }
 }
