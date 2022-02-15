@@ -28,8 +28,6 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 	@Autowired
 	RequestRepository requestRepository;
 	@Autowired
-	SessionRepository sessionRepository;
-	@Autowired
 	UserRepository userRepository;
 
 	@Override
@@ -38,7 +36,6 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 		LinkModel linkModel = new LinkModel(1L,"url","nasUrl",45.23,Timestamp.valueOf(LocalDateTime.now()));
 		LinkZaProveruModel linkZaProveruModel = new LinkZaProveruModel(1L,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
 		RequestModel requestModel = new RequestModel(1L,"status","napomena",false,Timestamp.valueOf(LocalDateTime.now()));
-		SessionModel sessionModel = new SessionModel(1L,Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.now()));
 		UserModel userModel = new UserModel(1L,"status","ime","prezime","user1","pass1","tema");
 
 		List<LinkModel> list = new ArrayList<>();
@@ -55,8 +52,6 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 		RequestModel r = requestRepository.save(requestModel);
 		clientModel.setKorisnik(userRepository.getById(u.getId()));
 		ClientModel c = clientRepository.save(clientModel);
-		sessionModel.setKorisnik(userRepository.getById(u.getId()));
-		sessionRepository.save(sessionModel);
 
 		linkModel.setKlijent(clientRepository.getById(c.getId()));
 		linkRepository.save(linkModel);
