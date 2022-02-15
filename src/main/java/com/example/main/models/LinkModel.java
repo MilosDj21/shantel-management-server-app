@@ -9,11 +9,11 @@ public class LinkModel {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String url;
     @Column(name = "nas_url")
     private String nasUrl;
-    private double cena;
+    private Double cena;
     @Column(name = "vreme_placanja")
     private Timestamp vremePlacanja;
 
@@ -24,7 +24,7 @@ public class LinkModel {
     public LinkModel() {
     }
 
-    public LinkModel(int id, String url, String nasUrl, double cena, Timestamp vremePlacanja) {
+    public LinkModel(Long id, String url, String nasUrl, Double cena, Timestamp vremePlacanja) {
         this.id = id;
         this.url = url;
         this.nasUrl = nasUrl;
@@ -32,11 +32,11 @@ public class LinkModel {
         this.vremePlacanja = vremePlacanja;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,11 +56,11 @@ public class LinkModel {
         this.nasUrl = nasUrl;
     }
 
-    public double getCena() {
+    public Double getCena() {
         return cena;
     }
 
-    public void setCena(double cena) {
+    public void setCena(Double cena) {
         this.cena = cena;
     }
 

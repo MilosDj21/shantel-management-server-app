@@ -2,8 +2,6 @@ package com.example.main.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "zahtevi")
@@ -11,7 +9,7 @@ public class RequestModel {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String status;
     private String napomena;
     @Column(name = "nova_provera")
@@ -31,7 +29,7 @@ public class RequestModel {
 
     }
 
-    public RequestModel(int id, String status, String napomena, boolean novaProvera, Timestamp vremeKreiranja) {
+    public RequestModel(Long id, String status, String napomena, boolean novaProvera, Timestamp vremeKreiranja) {
         this.id = id;
         this.status = status;
         this.napomena = napomena;
@@ -39,11 +37,11 @@ public class RequestModel {
         this.vremeKreiranja = vremeKreiranja;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

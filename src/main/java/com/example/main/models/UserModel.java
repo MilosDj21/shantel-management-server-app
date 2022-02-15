@@ -1,15 +1,13 @@
 package com.example.main.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "korisnici")
 public class UserModel {
     @GeneratedValue
     @Id
-    private int id;
+    private Long id;
     private String status;
     private String ime;
     private String prezime;
@@ -32,7 +30,7 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(int id, String status, String ime, String prezime, String username, String password, String uiTema) {
+    public UserModel(Long id, String status, String ime, String prezime, String username, String password, String uiTema) {
         this.id = id;
         this.status = status;
         this.ime = ime;
@@ -42,11 +40,11 @@ public class UserModel {
         this.uiTema = uiTema;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -120,5 +118,18 @@ public class UserModel {
 
     public void setKlijenti(List<ClientModel> klijenti) {
         this.klijenti = klijenti;
+    }*/
+
+    /*@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserModel userModel = (UserModel) o;
+        return id == userModel.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }*/
 }

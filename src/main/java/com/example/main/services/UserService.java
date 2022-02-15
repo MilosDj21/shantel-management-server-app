@@ -20,8 +20,22 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteOne(int id){
+    public void deleteOne(long id){
         userRepository.deleteById(id);
+    }
+
+    public UserModel getOne(UserModel user){
+        List<UserModel> users = findAll();
+        if(user.getId() != null && users.contains(user)){
+            return user;
+        }else{
+            for(UserModel u: users){
+                if(u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())){
+                    return u;
+                }
+            }
+        }
+        return null;
     }
 
 }

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class LinkZaProveruModel {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String url;
     private String status;
     @Column(name = "vreme_provere")
@@ -23,7 +23,7 @@ public class LinkZaProveruModel {
 
     }
 
-    public LinkZaProveruModel(int id, String url, String status, Timestamp vremeProvere, String teme) {
+    public LinkZaProveruModel(Long id, String url, String status, Timestamp vremeProvere, String teme) {
         this.id = id;
         this.url = url;
         this.status = status;
@@ -31,11 +31,11 @@ public class LinkZaProveruModel {
         this.teme = teme;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

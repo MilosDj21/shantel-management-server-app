@@ -20,7 +20,7 @@ public class LinkService {
         return linkRepository.save(link);
     }
 
-    public void deleteOne(int id){
+    public void deleteOne(long id){
         linkRepository.deleteById(id);
     }
 }

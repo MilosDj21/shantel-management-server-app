@@ -2,19 +2,19 @@ package com.example.main.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "klijenti")
 public class ClientModel {
     @Id
     @GeneratedValue
-    private int id;
-    private String kontakt_osoba;
+    private Long id;
+    @Column(name = "kontakt_osoba")
+    private String kontaktOsoba;
     private String email;
     private String napomena;
-    private Timestamp vreme_izmene;
+    @Column(name = "vreme_izmene")
+    private Timestamp vremeIzmene;
 
     /*@OneToMany(mappedBy = "klijent")
     private List<LinkModel> linkovi = new ArrayList<>();
@@ -26,28 +26,28 @@ public class ClientModel {
     public ClientModel() {
     }
 
-    public ClientModel(int id, String kontakt_osoba, String email, String napomena, Timestamp vreme_izmene) {
+    public ClientModel(Long id, String kontaktOsoba, String email, String napomena, Timestamp vremeIzmene) {
         this.id = id;
-        this.kontakt_osoba = kontakt_osoba;
+        this.kontaktOsoba = kontaktOsoba;
         this.email = email;
         this.napomena = napomena;
-        this.vreme_izmene = vreme_izmene;
+        this.vremeIzmene = vremeIzmene;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getKontakt_osoba() {
-        return kontakt_osoba;
+    public String getKontaktOsoba() {
+        return kontaktOsoba;
     }
 
-    public void setKontakt_osoba(String kontakt_osoba) {
-        this.kontakt_osoba = kontakt_osoba;
+    public void setKontaktOsoba(String kontaktOsoba) {
+        this.kontaktOsoba = kontaktOsoba;
     }
 
     public String getEmail() {
@@ -66,12 +66,12 @@ public class ClientModel {
         this.napomena = napomena;
     }
 
-    public Timestamp getVreme_izmene() {
-        return vreme_izmene;
+    public Timestamp getVremeIzmene() {
+        return vremeIzmene;
     }
 
-    public void setVreme_izmene(Timestamp vreme_izmene) {
-        this.vreme_izmene = vreme_izmene;
+    public void setVremeIzmene(Timestamp vremeIzmene) {
+        this.vremeIzmene = vremeIzmene;
     }
 
     /*public List<LinkModel> getLinkovi() {

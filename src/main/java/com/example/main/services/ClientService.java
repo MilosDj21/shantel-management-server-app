@@ -20,7 +20,7 @@ public class ClientService {
         return clientRepository.save(model);
     }
 
-    public void deleteOne(int id){
+    public void deleteOne(long id){
         clientRepository.deleteById(id);
     }
 

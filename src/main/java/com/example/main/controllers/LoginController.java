@@ -19,16 +19,8 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
-    public SessionModel login(@RequestBody UserModel user){
-        List<UserModel> users = userService.findAll();
-        for(UserModel u: users){
-            if(u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())){
-                SessionModel session = new SessionModel(u);
-                ShantelKlijentiServerApplication.SESSION_LIST.add(session);
-                return session;
-            }
-        }
-        return null;
-    }
+    /*@GetMapping("/login")
+    public UserModel login(@RequestBody UserModel user){
+        return userService.getOne(user);
+    }*/
 }

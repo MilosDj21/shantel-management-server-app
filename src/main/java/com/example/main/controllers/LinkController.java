@@ -24,7 +24,7 @@ public class LinkController {
     }
 
     @DeleteMapping("/links/{id}")
-    public void deleteOne(@PathVariable int id){
+    public void deleteOne(@PathVariable long id){
         linkService.deleteOne(id);
     }
 }

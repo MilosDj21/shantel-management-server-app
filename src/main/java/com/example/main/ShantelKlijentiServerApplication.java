@@ -32,17 +32,14 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 	@Autowired
 	UserRepository userRepository;
 
-	@Autowired
-	public static List<SessionModel> SESSION_LIST;
-
 	@Override
 	public void run(String... args) throws Exception {
-		ClientModel clientModel = new ClientModel(1,"Ime Prezime","email@email","napomena", Timestamp.valueOf(LocalDateTime.now()));
-		LinkModel linkModel = new LinkModel(1,"url","nasUrl",45.23,Timestamp.valueOf(LocalDateTime.now()));
-		LinkZaProveruModel linkZaProveruModel = new LinkZaProveruModel(1,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
-		RequestModel requestModel = new RequestModel(1,"status","napomena",false,Timestamp.valueOf(LocalDateTime.now()));
-		SessionModel sessionModel = new SessionModel(1,"shdf7ys7f8s63gf3gf6",Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.now()));
-		UserModel userModel = new UserModel(1,"status","ime","prezime","user1","pass1","tema");
+		ClientModel clientModel = new ClientModel(1L,"Ime Prezime","email@email","napomena", Timestamp.valueOf(LocalDateTime.now()));
+		LinkModel linkModel = new LinkModel(1L,"url","nasUrl",45.23,Timestamp.valueOf(LocalDateTime.now()));
+		LinkZaProveruModel linkZaProveruModel = new LinkZaProveruModel(1L,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
+		RequestModel requestModel = new RequestModel(1L,"status","napomena",false,Timestamp.valueOf(LocalDateTime.now()));
+		SessionModel sessionModel = new SessionModel(1L,Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.now()));
+		UserModel userModel = new UserModel(1L,"status","ime","prezime","user1","pass1","tema");
 
 		List<LinkModel> list = new ArrayList<>();
 		list.add(linkModel);
@@ -53,7 +50,7 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 		List<ClientModel> list3 = new ArrayList<>();
 		list3.add(clientModel);
 
-		UserModel u = userRepository.save(userModel);
+		UserModel u = userRepository.findById(1L).get();
 		requestModel.setKorisnik(userRepository.getById(u.getId()));
 		RequestModel r = requestRepository.save(requestModel);
 		clientModel.setKorisnik(userRepository.getById(u.getId()));
