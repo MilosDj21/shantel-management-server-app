@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 @Table(name = "linkovi_za_proveru")
 public class LinkZaProveruModel {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String url;
     private String status;

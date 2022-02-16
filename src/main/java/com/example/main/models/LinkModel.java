@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class LinkModel {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String url;
     @Column(name = "nas_url")

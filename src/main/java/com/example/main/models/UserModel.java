@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "korisnici")
 public class UserModel {
-    @GeneratedValue
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String status;
     private String ime;

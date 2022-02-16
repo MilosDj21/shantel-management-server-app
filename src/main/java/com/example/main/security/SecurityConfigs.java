@@ -29,13 +29,13 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
                 .antMatchers("/users").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/clients").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/links").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();
+                .antMatchers("/requests").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
+                .antMatchers("/").permitAll()
+                .anyRequest().authenticated()
+                .and().httpBasic();
+        http.cors().and().csrf().disable();
     }
 }

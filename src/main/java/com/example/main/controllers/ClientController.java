@@ -19,8 +19,9 @@ public class ClientController {
         return clientService.findAll();
     }
 
-    @PostMapping("/clients")
-    public ClientModel saveOne(@RequestBody ClientModel client){
+    @PostMapping("/users/{userId}/clients")
+    public ClientModel saveOne(@PathVariable long userId, @RequestBody ClientModel client){
+
         return clientService.saveOne(client);
     }
 

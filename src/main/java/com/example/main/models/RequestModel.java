@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class RequestModel {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String status;
     private String napomena;

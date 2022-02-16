@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 @Table(name = "klijenti")
 public class ClientModel {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "kontakt_osoba")
     private String kontaktOsoba;

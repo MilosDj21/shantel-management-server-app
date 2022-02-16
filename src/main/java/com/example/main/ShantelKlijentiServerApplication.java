@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 		LinkModel linkModel = new LinkModel(1L,"url","nasUrl",45.23,Timestamp.valueOf(LocalDateTime.now()));
 		LinkZaProveruModel linkZaProveruModel = new LinkZaProveruModel(1L,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
 		RequestModel requestModel = new RequestModel(1L,"status","napomena",false,Timestamp.valueOf(LocalDateTime.now()));
-		UserModel userModel = new UserModel(1L,"status","ime","prezime","user1","pass1","tema");
+		UserModel userModel = new UserModel(1L,"ADMIN","ime","prezime","user1",new BCryptPasswordEncoder().encode("pass1"),"tema");
 
 		List<LinkModel> list = new ArrayList<>();
 		list.add(linkModel);
@@ -47,7 +48,7 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 		List<ClientModel> list3 = new ArrayList<>();
 		list3.add(clientModel);
 
-		UserModel u = userRepository.findById(1L).get();
+		UserModel u = userRepository.save(userModel);
 		requestModel.setKorisnik(userRepository.getById(u.getId()));
 		RequestModel r = requestRepository.save(requestModel);
 		clientModel.setKorisnik(userRepository.getById(u.getId()));
