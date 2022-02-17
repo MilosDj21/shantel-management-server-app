@@ -33,6 +33,7 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
                 .antMatchers("/clients").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/links").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/requests").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
+                .antMatchers("/linkcheck").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic();
