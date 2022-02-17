@@ -6,8 +6,6 @@ import com.example.main.services.RequestService;
 import com.example.main.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,11 +25,16 @@ public class RequestController {
         return requestService.findAll();
     }
 
+    @GetMapping("/users/{userId}/requests")
+    public List<RequestModel> findAllByUserId(@PathVariable long userId){
+        return requestService.findAllByUserId(userId);
+    }
+
     @PostMapping("/users/{userId}/requests")
-    public RequestModel saveOne(@PathVariable Long userId, @RequestBody RequestModel requestModel){
+    public RequestModel saveOne(@PathVariable long userId, @RequestBody RequestModel requestModel){
         UserModel u = userService.findById(userId);
         if(u == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }else {
             requestModel.setKorisnik(u);
             return requestService.saveOne(requestModel);
@@ -40,6 +43,6 @@ public class RequestController {
 
     @DeleteMapping("/requests/{id}")
     public void deleteOne(@PathVariable long id){
-        requestService.deleteOne(id);
+        requestService.deleteById(id);
     }
 }
