@@ -2,6 +2,7 @@ package com.example.main.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table(name = "klijenti")
@@ -74,19 +75,24 @@ public class ClientModel {
         this.vremeIzmene = vremeIzmene;
     }
 
-    /*public List<LinkModel> getLinkovi() {
-        return linkovi;
-    }
-
-    public void setLinkovi(List<LinkModel> linkovi) {
-        this.linkovi = linkovi;
-    }*/
-
     public UserModel getKorisnik() {
         return korisnik;
     }
 
     public void setKorisnik(UserModel korisnik) {
         this.korisnik = korisnik;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientModel clientModel = (ClientModel) o;
+        return Objects.equals(id, clientModel.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
