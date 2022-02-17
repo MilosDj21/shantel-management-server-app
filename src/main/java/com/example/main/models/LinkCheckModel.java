@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "linkovi_za_proveru")
-public class LinkZaProveruModel {
+public class LinkCheckModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,11 +19,11 @@ public class LinkZaProveruModel {
     @JoinColumn(name = "zahtev_id", referencedColumnName = "id")
     private RequestModel zahtev;
 
-    public LinkZaProveruModel(){
+    public LinkCheckModel(){
 
     }
 
-    public LinkZaProveruModel(Long id, String url, String status, Timestamp vremeProvere, String teme) {
+    public LinkCheckModel(Long id, String url, String status, Timestamp vremeProvere, String teme) {
         this.id = id;
         this.url = url;
         this.status = status;
