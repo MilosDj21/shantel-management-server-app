@@ -25,7 +25,7 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 	@Autowired
 	LinkRepository linkRepository;
 	@Autowired
-	LinkZaProveruRepository linkZaProveruRepository;
+	LinkCheckRepository linkCheckRepository;
 	@Autowired
 	RequestRepository requestRepository;
 	@Autowired
@@ -35,14 +35,14 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		ClientModel clientModel = new ClientModel(1L,"Ime Prezime","email@email","napomena", Timestamp.valueOf(LocalDateTime.now()));
 		LinkModel linkModel = new LinkModel(1L,"url","nasUrl",45.23,Timestamp.valueOf(LocalDateTime.now()));
-		LinkZaProveruModel linkZaProveruModel = new LinkZaProveruModel(1L,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
+		LinkCheckModel linkCheckModel = new LinkCheckModel(1L,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
 		RequestModel requestModel = new RequestModel(1L,"status","napomena",false,Timestamp.valueOf(LocalDateTime.now()));
 		UserModel userModel = new UserModel(1L,"ADMIN","ime","prezime","user1",new BCryptPasswordEncoder().encode("pass1"),"tema");
 
 		List<LinkModel> list = new ArrayList<>();
 		list.add(linkModel);
-		List<LinkZaProveruModel> list1 = new ArrayList<>();
-		list1.add(linkZaProveruModel);
+		List<LinkCheckModel> list1 = new ArrayList<>();
+		list1.add(linkCheckModel);
 		List<RequestModel> list2 = new ArrayList<>();
 		list2.add(requestModel);
 		List<ClientModel> list3 = new ArrayList<>();
@@ -58,10 +58,10 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 		linkRepository.save(linkModel);
 		linkRepository.save(linkModel);
 		linkRepository.save(linkModel);
-		linkZaProveruModel.setZahtev(requestRepository.getById(r.getId()));
-		linkZaProveruRepository.save(linkZaProveruModel);
-		linkZaProveruRepository.save(linkZaProveruModel);
-		linkZaProveruRepository.save(linkZaProveruModel);
+		linkCheckModel.setZahtev(requestRepository.getById(r.getId()));
+		linkCheckRepository.save(linkCheckModel);
+		linkCheckRepository.save(linkCheckModel);
+		linkCheckRepository.save(linkCheckModel);
 
 		List<LinkModel> linkovi = linkRepository.findAll();
 		for(LinkModel l: linkovi){
