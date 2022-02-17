@@ -1,6 +1,7 @@
 package com.example.main.models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "korisnici")
@@ -96,40 +97,16 @@ public class UserModel {
         this.uiTema = uiTema;
     }
 
-    /*public SessionModel getSesija() {
-        return sesija;
-    }
-
-    public void setSesija(SessionModel sesija) {
-        this.sesija = sesija;
-    }
-
-    public List<RequestModel> getZahtevi() {
-        return zahtevi;
-    }
-
-    public void setZahtevi(List<RequestModel> zahtevi) {
-        this.zahtevi = zahtevi;
-    }
-
-    public List<ClientModel> getKlijenti() {
-        return klijenti;
-    }
-
-    public void setKlijenti(List<ClientModel> klijenti) {
-        this.klijenti = klijenti;
-    }*/
-
-    /*@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserModel userModel = (UserModel) o;
-        return id == userModel.id;
+        return Objects.equals(id, userModel.id);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }*/
+    }
 }
