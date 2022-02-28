@@ -3,6 +3,7 @@ package com.example.main.services;
 import com.example.main.models.UserModel;
 import com.example.main.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserService {
     }
 
     public UserModel saveOne(UserModel user){
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -34,7 +36,7 @@ public class UserService {
             return user;
         }else{
             for(UserModel u: users){
-                if(u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())){
+                if(u.getUsername().equals(user.getUsername()) && new BCryptPasswordEncoder().matches(user.getPassword(), u.getPassword())){
                     return u;
                 }
             }
