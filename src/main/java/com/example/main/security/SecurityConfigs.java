@@ -34,6 +34,7 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
                 .antMatchers("/links").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/requests").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
                 .antMatchers("/linkcheck").hasAnyAuthority("MENADZER","STEFAN","ADMIN")
+                .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic();
