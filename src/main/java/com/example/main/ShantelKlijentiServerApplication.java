@@ -34,7 +34,7 @@ public class ShantelKlijentiServerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		ClientModel clientModel = new ClientModel(1L,"Ime Prezime","email@email","napomena", Timestamp.valueOf(LocalDateTime.now()));
-		LinkModel linkModel = new LinkModel(1L,"url","nasUrl",45.23,Timestamp.valueOf(LocalDateTime.now()));
+		LinkModel linkModel = new LinkModel(1L,"url",45.23,Timestamp.valueOf(LocalDateTime.now()));
 		LinkCheckModel linkCheckModel = new LinkCheckModel(1L,"url","status",Timestamp.valueOf(LocalDateTime.now()),"teme");
 		RequestModel requestModel = new RequestModel(1L,"status","napomena",false,Timestamp.valueOf(LocalDateTime.now()));
 		UserModel userModel = new UserModel(1L,"ADMIN","ime","prezime","user1",new BCryptPasswordEncoder().encode("pass1"),"tema");
