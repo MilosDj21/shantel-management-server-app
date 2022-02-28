@@ -11,8 +11,6 @@ public class LinkModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String url;
-    @Column(name = "nas_url")
-    private String nasUrl;
     private Double cena;
     @Column(name = "vreme_placanja")
     private Timestamp vremePlacanja;
@@ -24,10 +22,9 @@ public class LinkModel {
     public LinkModel() {
     }
 
-    public LinkModel(Long id, String url, String nasUrl, Double cena, Timestamp vremePlacanja) {
+    public LinkModel(Long id, String url, Double cena, Timestamp vremePlacanja) {
         this.id = id;
         this.url = url;
-        this.nasUrl = nasUrl;
         this.cena = cena;
         this.vremePlacanja = vremePlacanja;
     }
@@ -46,14 +43,6 @@ public class LinkModel {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getNasUrl() {
-        return nasUrl;
-    }
-
-    public void setNasUrl(String nasUrl) {
-        this.nasUrl = nasUrl;
     }
 
     public Double getCena() {
